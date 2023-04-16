@@ -1,0 +1,39 @@
+<h1 class="center">Liste de pokemons</h1>
+
+<div class="input__wrapper">
+  <label>RECHERCHER</label>
+  <input
+    type="text"
+    maxlength="15"
+    [(ngModel)]=" pokemonData"
+    (input)="pokemonDataSearch()"
+  />
+</div>
+<button (click)="handleToggle()" id="button">Changer de theme </button>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let pokemon of pokemonTab" class="col s6 m4">
+      <div
+        class="card horizontal"
+        pkmnBorderCard
+        (click)="selectPokemon(pokemon)"
+      >
+        <div class="card-iamge">
+          <img [src]="pokemon.picture" />
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>{{ pokemon.name }}</p>
+            <p>
+              <small>{{ pokemon.created | date : "dd/MM/yyy" }}</small>
+            </p>
+            <div>
+              <span *ngFor="let type of pokemon.types"class="{{ type | pokemonTypeColor }}">{{ type + " " }}</span>
+              <p [style.color]="pokemon.rarete | rareteColor">{{ pokemon.rarete }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

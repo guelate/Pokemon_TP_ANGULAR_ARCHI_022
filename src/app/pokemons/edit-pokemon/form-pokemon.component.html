@@ -1,0 +1,122 @@
+<form #pokemonForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col s8 offset-s2">
+      <div class="card-panel">
+        <!-- pokemon name -->
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            pattern="^[a-zA-Zàéèç]{1,25}$"
+            [(ngModel)]="pokemon.name"
+            #name="ngModel"
+          />
+          <div
+            [hidden]="name.valid || name.pristine"
+            class="card-panel red accent-1"
+          >
+            Le nom du pokemon est requis (1-25)
+          </div>
+
+          <label for="hp">Point de vies </label>
+          <input
+            type="number"
+            name="hp"
+            id="hp"
+            required
+            pattern="^(?:[1-9]|[1-4][0-9]|50)$"
+            [(ngModel)]="pokemon.hp"
+            #hp="ngModel"
+          />
+          <div
+            [hidden]="hp.valid || hp.pristine"
+            class="card-panel red accent-1"
+          >
+            Les points de vie du pokemon sont requis(1-50)
+          </div>
+
+          <label for="cp">Attaque</label>
+          <input
+            type="number"
+            name="cp"
+            id="cp"
+            required
+            pattern="^(?:[1-9]|[1-4][0-9]|10)$"
+            [(ngModel)]="pokemon.cp"
+            #cp="ngModel"
+          />
+          <div
+            [hidden]="cp.valid || cp.pristine"
+            class="card-panel red accent-1"
+          >
+            Une attaque est requise (1-10)
+          </div>
+          <div class="form-group">
+            <label for="picture">Url du pictures</label>
+            <input
+              type="text"
+              name="picture"
+              id="picture"
+              required
+              pattern="^(https?:\/\/)?[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$"
+              [(ngModel)]="pokemon.picture"
+              #picture="ngModel"
+            />
+            <div [hidden]="picture.valid || picture.pristine" class="card-panel red accent-1">
+              Donnez l'url de l'image du pokemon
+            </div>
+          </div>
+
+          <form class="form-group">
+            <label for="type">Types</label>
+            <p *ngFor="let type of types">
+              <label>
+                <input
+                  type="checkbox"
+                  id="{{ type }}"
+                  class="filled-in"
+                  [value]="type"
+                  [checked]="hasType(type)"
+                  [disabled]="!isTypesValid(type)"
+                  (change)="selectType($event, type)"
+                />
+
+                <span [attr.for]="type">
+                  <div class="{{ type | pokemonTypeColor }}">{{ type }}</div>
+                </span>
+              </label>
+            </p>
+          </form>
+          <div class="form-group">
+            <label for="name">Rareté</label>
+            <input type="text" name="rarete" id="rarete"
+                   required
+                   pattern="^\*{1,5}$"
+                   [(ngModel)]="pokemon.rarete" #rarete="ngModel"
+            />
+            <div [hidden]="rarete.valid">
+              La rareté doit être une * (1-5)
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <div class="section center">
+            <button
+              type="submit"
+              class="waves-effect waves-light btn"
+              [disabled]="!pokemonForm.form.valid"
+            >
+              Valider
+            </button>
+            <a class="waves-effect waves-teal btn" (click)="goDetail(pokemon)"
+              >Retourner à la description</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

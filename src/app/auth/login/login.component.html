@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center" style="padding-top: 20px;">
+        <div class="container box" style="margin-top: 10px; padding-left: 0; padding-right: 0;">
+          <div class="row">
+            <div class="col-12" style="text-align: center;">
+              <i>Identifiant: Guelate<br>Mot de passe: admin</i>
+              <form (ngSubmit)="onSubmit()" class="form-signin">
+                <h2 class="form-signin-heading">Connexion :)</h2>
+  
+                <i>{{ message }}<br /></i>
+  
+                <label for="username" class="sr-only">Identifiant</label>
+                <input type="text" [(ngModel)]="username" name="username" id="username" class="form-control" placeholder="Identifiant" required autofocus>
+  
+                <label for="password" class="sr-only">Mot de passe</label>
+                <input type="password" [(ngModel)]="password" id="password" name="password" class="form-control" placeholder="Mot de passe" required>
+  
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Valider</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

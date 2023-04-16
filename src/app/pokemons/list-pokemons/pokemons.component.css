@@ -1,0 +1,14 @@
+.input__wrapper{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    outline: solid;
+    width: 20%;
+    left: 37%;
+    align-items: center;
+}
+#button{
+    display: flex;
+    width: 80px;
+    outline: solid;
+}
